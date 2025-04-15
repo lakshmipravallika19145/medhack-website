@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3D Video Consultation Booking</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #e0f7fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #e0f7fa;
+      padding: 40px;
+      border-radius: 30px;
+      box-shadow: 20px 20px 60px #c0d9db, -20px -20px 60px #ffffff;
+      width: 90%;
+      max-width: 600px;
+      transition: all 0.3s ease;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0277bd;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 3px #b3e5fc;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #01579b;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 25px;
+      border: none;
+      border-radius: 15px;
+      background: #ffffff;
+      box-shadow: inset 8px 8px 15px #b3d1d3,
+                  inset -8px -8px 15px #ffffff;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.3s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      box-shadow: inset 2px 2px 5px #b0d4d6, inset -2px -2px 5px #ffffff, 0 0 0 2px #4fc3f7;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      margin-top: 15px;
+      border-radius: 15px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #0277bd;
+      background: #e0f7fa;
+      box-shadow: 8px 8px 15px #b3d1d3,
+                  -8px -8px 15px #ffffff;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      background-color: #b3e5fc;
+    }
+
+    .output {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 15px;
+      background: #e0f7fa;
+      box-shadow: inset 8px 8px 15px #b3d1d3,
+                  inset -8px -8px 15px #ffffff;
+      font-size: 1rem;
+      color: #004d40;
+      white-space: pre-line;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💻 Video Consultation Booking</h1>
+
+    <label for="name">Patient Name:</label>
+    <input type="text" id="name" placeholder="Enter your full name" required/>
+    
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" placeholder="Enter your email" required
+       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+       title="Please enter a valid email address"/>
+
+    <label for="problem">Describe Symptoms / Problem:</label>
+    <textarea id="problem" placeholder="e.g. Headache, fever, skin rash..." rows="3"></textarea>
+
+    <label for="doctor">Preferred Doctor:</label>
+    <select id="doctor">
+      <option value="">Select a doctor</option>
+      <option value="Dr. Smith">Dr. Smith (General Physician)</option>
+      <option value="Dr. Johnson">Dr. Johnson (Cardiologist)</option>
+      <option value="Dr. Lee">Dr. Lee (Dermatologist)</option>
+      <option value="Dr. Patel">Dr. Patel (Neurologist)</option>
+      <option value="Dr. Mehta">Dr. Mehta (Gastroenterologist)</option>
+      <option value="Dr. Rao">Dr. Rao (Pulmonologist)</option>
+      <option value="Dr. Reddy">Dr. Reddy (Orthopedic Specialist)</option>
+      <option value="Dr. Thomas">Dr. Thomas (Psychiatrist)</option>
+    </select>
+
+    <label for="date">Preferred Date & Time:</label>
+    <input type="datetime-local" id="date" required/>
+
+    <label for="mode">Consultation Mode:</label>
+    <select id="mode">
+      <option value="video">Video Call</option>
+      <option value="audio">Audio Call</option>
+      <option value="chat">Chat</option>
+      <option value="email">Email</option>
+    </select>
+
+    <label for="file">Upload Reports (Optional):</label>
+    <input type="file" id="file" accept=".jpg,.png,.pdf,.docx,.txt"/>
+
+    <button class="btn" onclick="submitConsultation()">📅 Book Consultation</button>
+
+    <div class="output" id="output"></div>
+  </div>
+
+  <script>
+    const symptomToDoctorMap = [
+      { keywords: ["heart", "chest pain", "palpitations"], doctor: "Dr. Johnson" },
+      { keywords: ["skin", "rash", "itch", "acne"], doctor: "Dr. Lee" },
+      { keywords: ["fever", "cold", "cough", "headache"], doctor: "Dr. Smith" },
+      { keywords: ["stomach", "vomiting", "diarrhea", "gas"], doctor: "Dr. Mehta" },
+      { keywords: ["breathing", "lungs", "asthma", "shortness"], doctor: "Dr. Rao" },
+      { keywords: ["bone", "joint", "knee", "fracture"], doctor: "Dr. Reddy" },
+      { keywords: ["depression", "anxiety", "stress", "mental"], doctor: "Dr. Thomas" },
+      { keywords: ["migraine", "numbness", "memory", "seizure"], doctor: "Dr. Patel" }
+    ];
+  
+    document.getElementById("problem").addEventListener("input", function() {
+      const problemText = this.value.toLowerCase();
+      let matchedDoctor = "";
+  
+      for (let mapping of symptomToDoctorMap) {
+        if (mapping.keywords.some(keyword => problemText.includes(keyword))) {
+          matchedDoctor = mapping.doctor;
+          break;
+        }
+      }
+  
+      document.getElementById("doctor").value = matchedDoctor;
+    });
+  
+    function isValidEmail(email) {
+      const regex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+      return regex.test(email);
+    }
+  
+    function submitConsultation() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const problem = document.getElementById("problem").value;
+      const doctor = document.getElementById("doctor").value;
+      const date = document.getElementById("date").value;
+      const mode = document.getElementById("mode").value;
+      const file = document.getElementById("file").files[0];
+  
+      if (!name || !email || !problem || !doctor || !date || !mode) {
+        showMessage("⚠ Please fill in all required fields.");
+        return;
+      }
+  
+      if (!isValidEmail(email)) {
+        showMessage("❌ Invalid email address. Please enter a valid email.");
+        return;
+      }
+  
+      const formattedDate = new Date(date).toLocaleString();
+      const fileName = file ? file.name : "No report uploaded";
+  
+      const message = `
+  ✅ Booking Confirmed!
+  
+  👤 Name: ${name}
+  📧 Email: ${email}
+  🩺 Doctor: ${doctor}
+  📅 Date & Time: ${formattedDate}
+  💬 Mode: ${mode.toUpperCase()}
+  📎 Report: ${fileName}
+      `;
+  
+      showMessage(message);
+    }
+  
+    function showMessage(msg) {
+      const output = document.getElementById("output");
+      output.innerText = msg;
+      output.style.display = "block";
+    }
+  </script>
