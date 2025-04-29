@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - MediCare</title>
+    <link rel="stylesheet" href="services.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+/* Reset & Fonts */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Root Variables */
+:root {
+    --blue-strong: #0057D9;
+    --blue-medium: #0093D1;
+    --blue-sky: #62D2FA;
+    --blue-light: #B5EEFF;
+    --blue-verylight: #E8FCFF;
+    --white: #FFFFFF;
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --text-color: #333;
+}
+
+/* Body */
+body {
+    background: linear-gradient(135deg, var(--blue-strong) 0%, var(--blue-medium) 30%, var(--blue-light) 60%, var(--blue-verylight) 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Navigation */
+nav {
+    background: darkblue; /* Blue background for navbar */
+    color: var(--white); /* White text */
+    border-bottom: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--white); /* White logo text */
+}
+
+.logo span {
+    color: var(--blue-light); /* Light blue accent for logo */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links a {
+    color: var(--white); /* White text for navbar links */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    height: 2px;
+    width: 0;
+    background: var(--blue-light);
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 100px 20px 50px;
+    color: whitesmoke;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+}
+
+.hero p {
+    font-size: 18px;
+}
+
+/* Services Section */
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    padding: 50px 20px;
+    background-color: rgba(255, 255, 255, 0.897);
+    /*background-color: var(--blue-sky); /* Light blue background for services section */
+}
+
+.service-card {
+    background: var(--glass-bg);
+    background-color: #b5f6ff;
+    border: 1px solid var(--glass-border);
+   /* backdrop-filter: blur(20px);*/
+    border-radius: 20px;
+    width: 280px;
+    padding: 30px 20px;
+    text-align: center;
+    color: var(--text-color);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.service-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+}
+
+.service-card img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.2));
+}
+
+.service-card h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    min-height: 60px;
+}
+
+/* Glass Button */
+.btn-glass {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--blue-medium);
+    color: var(--white);
+    border: none;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    perspective: 1000px;
+}
+
+.btn-glass:hover {
+    transform: scale(1.05) rotateX(10deg);
+    background: var(--blue-strong);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+/* Footer */
+footer {
+    background: var(--white);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--glass-border);
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--blue-strong);
+    margin-top: 40px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav {
+        padding: 15px 30px;
+    }
+    .hero h1 {
+        font-size: 34px;
+    }
+    .services {
+        gap: 20px;
+    }
+    .service-card {
+        width: 90%;
+    }
+}
+
+
+</style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Med<span>Hack</span></div>
+        <ul class="nav-links">
+            <li><a href="index.php">Home</a></li>
+            <li><a href="doctorslist.php">Doctors</a></li>
+            <li><a href="bookappointment.html">Appointments</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>Our Medical Services</h1>
+        <p>Professional care, advanced facilities, compassionate treatment.</p>
+    </section>
+
+    <section class="services">
+        <div class="service-card">
+            <img src="https://img.icons8.com/ios/100/heart-health.png" alt="Cardiology">
+            <h3>Cardiology</h3>
+            <p>Heart check-ups, treatments and consultations with expert cardiologists.</p>
+            <a href="#" class="btn-glass">Book Now</a>
+        </div>
+
+        <div class="service-card">
+            <img src="https://img.icons8.com/ios/100/stethoscope.png" alt="General Medicine">
+            <h3>General Medicine</h3>
+            <p>Primary health consultations, checkups, diagnosis and treatments.</p>
+            <a href="#" class="btn-glass">Book Now</a>
+        </div>
+
+        <div class="service-card">
+            <img src="https://img.icons8.com/ios/100/brain.png" alt="Neurology">
+            <h3>Neurology</h3>
+            <p>Specialized care for brain, spine, and nerve disorders and surgeries.</p>
+            <a href="#" class="btn-glass">Book Now</a>
+        </div>
+
+        <div class="service-card">
+            <img src="https://img.icons8.com/ios/100/pregnant.png" alt="Gynecology">
+            <h3>Gynecology</h3>
+            <p>Complete women’s health care, pregnancy monitoring and treatments.</p>
+            <a href="#" class="btn-glass">Book Now</a>
+        </div>
+
+        <div class="service-card">
+            <img src="https://img.icons8.com/ios/100/medical-doctor.png" alt="Pediatrics">
+            <h3>Pediatrics</h3>
+            <p>Expert health care for infants, children, and adolescents.</p>
+            <a href="#" class="btn-glass">Book Now</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 MediCare. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

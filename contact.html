@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Healthcare Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #F4F6FA;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #4FC3F7;
+    padding: 1rem 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.nav-links {
+    list-style-type: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 1rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #0288D1;
+}
+
+.contact-section {
+    padding: 3rem 0;
+    perspective: 1000px; /* For 3D hover effect */
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+h1 {
+    text-align: center;
+    color: #4FC3F7;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.contact-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    transition: transform 0.5s;
+}
+
+/* Contact Info Styling */
+.contact-info {
+    width: 45%;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-info:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.contact-info p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.info-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.info-list li {
+    margin: 1rem 0;
+    font-size: 1rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.info-list li i {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    color: #0288D1;
+    transition: transform 0.3s ease;
+}
+
+.info-list li:hover i {
+    transform: scale(1.2);
+}
+
+.info-list li strong {
+    font-weight: 600;
+}
+
+.contact-info .info-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #4FC3F7;
+    margin-bottom: 1.5rem;
+}
+
+/* Map Styling */
+.map iframe {
+    width: 100%;
+    height: 300px;
+    border: 0;
+    border-radius: 10px;
+    margin-top: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.map:hover iframe {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Contact Form Styling */
+.contact-form {
+    width: 45%;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.contact-form h2 {
+    color: #4FC3F7;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    border-color: #0288D1;
+    transform: scale(1.02);
+}
+
+button.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background-color: #4FC3F7;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button.submit-btn:hover {
+    background-color: #0288D1;
+    transform: scale(1.05);
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    background-color: #0288D1;
+    color: white;
+    padding: 1rem 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">MedHack</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aboutus.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="contact-section">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p>If you have any questions or concerns, feel free to reach out to us. We're here to help you!</p>
+                    <ul class="info-list">
+                        <li><strong>Email:</strong>Lakshmipravallika_kattamuri@srmap.edu.in</li>
+                        <li><strong>Phone:</strong> +91 6305892391</li>
+                        <li><strong>Address:</strong> SRM university, vijayawada</li>
+                    </ul>
+                    <div class="map">
+                        <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3793.3951912331844!2d80.61659637498612!3d16.506174984216397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35f1b8f9a9335b%3A0x6fa1f4b042a90c19!2sVijayawada%2C%20Andhra%20Pradesh%20522502!5e0!3m2!1sen!2sin!4v1714124976764!5m2!1sen!2sin" 
+                        width="600" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                      </iframe>
+                      
+                                </div>
+                    
+                </div>
+                <div class="contact-form">
+                    <h2>Send Us a Message</h2>
+                    <form action="submit_contact_form.php" method="POST">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Healthcare Platform | All rights reserved.</p>
+    </footer>
+</body>
+</html>
